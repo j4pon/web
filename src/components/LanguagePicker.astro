@@ -7,7 +7,7 @@ const translatePath = useTranslatedPath(lang);
 <ul>
   {Object.entries(languages).map(([lang, label]) => (
     <li>
-      <a href={`web/${translatePath('/', lang)}`}>{label}</a>
+      <a href={`/web/${translatePath('/', lang)}`}>{label}</a>
     </li>
   ))}
 </ul>
