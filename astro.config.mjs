@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://j4pon.github.io',
-  base: '/web',
+  base: 'web',
   integrations: [tailwind(), react({
     include: ['**/react/*']
   })],
