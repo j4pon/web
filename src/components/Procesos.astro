@@ -1,0 +1,35 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Slider from "./Slider.astro";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type Item = {
+    descripcion:string,
+    img:string
+}
+const obj:any = t('servicio.items')
+const items: Item[] = JSON.parse(JSON.stringify(obj));
+const servicioItems:Item[] = items;
+---
+
+<section id="services" class="py-20 lg:pt-32 bg-gray-100">
+    <div class="container mx-auto">
+        <h2 class="text-center text-3xl lg:text-5xl font-extrabold
+        animate-fade-up animate-once animate-ease-in-out">
+            Mejoras en Procesos<br/>Financieros</h2>
+        </h2>
+
+        <div class="grid grid-cols-2 mt-8 lg:px-24 gap-5">
+            {servicioItems.map(({descripcion,img}) => (
+                <Slider img={img}>
+                    <p class=" text-xl">
+                        {descripcion}
+                    </p>
+                </Slider>
+            ))}
+    
+        </div>
+
+    </div>
+</section>

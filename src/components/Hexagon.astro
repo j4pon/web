@@ -1,0 +1,65 @@
+---
+interface Props  {
+    title:string 
+}
+const {title} = Astro.props
+---
+<div class="flex items-center py-5 px-5">
+    <a href="/demo">
+      <div class="hex-alt text-center uppercase font-extrabold text-xs content-center bg-gray-300 transition-all duration-300 ease-in-out hover:scale-105"
+      data-hexagon-button
+      data-title={title}
+      >
+        {title}
+      </div>
+    </a>
+    <div class="py-4 px-5">
+      <span class="font-light text-white">
+        <slot />
+      </span>
+    </div>
+</div>
+
+<script>
+
+  function initialize (){
+    const buttons = document.querySelectorAll('[data-hexagon-button]');
+
+    buttons.forEach((button) => {
+      const originalTitle = button.getAttribute('data-title');
+
+      button.addEventListener('mouseenter', () => {
+        button.innerHTML = "Solicitar <br> Demo";
+        button.classList.add('bg-indigo-300'); 
+      });
+      button.addEventListener('mouseleave', () => {
+        button.textContent = originalTitle;
+        button.classList.remove('bg-indigo-300'); 
+      });
+      
+    });
+  }
+
+  // Run the function after the page is fully loaded
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:after-swap', initialize);
+</script>
+
+<style>
+
+.hex {
+  height: 80px;
+  aspect-ratio: 1/cos(30deg);
+  clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
+  background: linear-gradient(-45deg,#CD8C52,#5E9FA3);
+}
+
+.hex-alt {
+  height: 100px;
+  aspect-ratio: cos(30deg);
+  /* notice how I simply switched the x/y from the previous polygon, easy! */
+  clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+  /*background: linear-gradient(45deg,#A7DBD8,#C7F464);*/
+  z-index: 1;
+}
+</style>

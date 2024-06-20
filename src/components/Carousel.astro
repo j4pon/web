@@ -1,0 +1,89 @@
+---
+import Slider from "./Slider.astro";
+
+---
+
+<section id="services" class="py-20 lg:pt-32 bg-gray-100">
+    <div class="container mx-auto">
+        <h2 class="text-center text-3xl lg:text-5xl font-extrabold
+        animate-fade-up animate-once animate-ease-in-out">
+            Mejoras en Procesos<br/>Financieros</h2>
+        </h2>
+
+        <!-- Contenedor principal de Swiper -->
+        <div class="swiper mt-20">
+            <!-- Wrapper adicional requerido -->
+            <div class="swiper-wrapper">
+            <!-- Los slides -->
+            <div class="swiper-slide">
+                <Slider>
+                    <p class="text-xl">
+                        Gesti&oacute;n de Fondos Mutuos e Inversiones en una &uacute;nica plataforma segura y escalable.
+                    </p>
+                </Slider>
+            </div>
+            <div class="swiper-slide">
+                <Slider>
+                    Aplicaciones de Operaciones Financieras especialmente adaptadas para la Banca Comercial.
+                </Slider>
+            </div>
+            <div class="swiper-slide">
+                <Slider>
+                    Traducciones de Cuentas Contables entre  Sistemas Core Bancario de Casa Matriz y Filiales  
+                </Slider>
+            </div>
+            <div class="swiper-slide">
+                <Slider>
+                    Conformidad de Entes Reguladores del Reporting Normativos de nuestros Clientes Instituciones Financieras Reguladas.
+                </Slider>
+            </div>
+            <div class="swiper-slide">
+                <Slider>
+                    <p class="text-gray-700 leading-tight mb-4">
+                        Integraciones con Nuevos Canales de Compra y Pasarelas de Dinero con Tarjetas Chip Cr&eacute;dito D&eacute;bito y Prepago.
+                    </p>
+                </Slider>
+            </div>
+            </div>
+            <!-- Botones de navegación -->
+             <!--
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+             -->
+             <div class="pagination text-center" />
+        </div>      
+  
+        <script>
+            // Core de Swiper y estilos
+            import Swiper from 'swiper';
+            import 'swiper/css';
+            // Módulo Navigation de Swiper y estilos
+            import { Pagination } from "swiper/modules";
+            //import "swiper/css/navigation";
+            import "swiper/css/pagination";
+        
+            function initializeSwiper() {
+                // Configurar Swiper
+                new Swiper(".swiper", {
+                modules: [Pagination], // definir los módulos a usar
+                loop: true,            // definir si los slides estarán en bucle
+                slidesPerView: 3,      // agregar número de slides para la pantalla
+                spaceBetween: 40,      // separación entre slides en px
+                /*navigation: {          // definir botones next y prev para el módulo Navigation
+                    prevEl: ".swiper-button-prev",
+                    nextEl: ".swiper-button-next",
+                }*/
+                pagination: {
+                    type: "bullets",
+                    el: ".pagination",
+                    clickable: true,
+                }
+                });
+            }
+            // Run the function after the page is fully loaded
+            document.addEventListener('astro:page-load', initializeSwiper);
+            document.addEventListener('astro:after-swap', initializeSwiper);
+        </script>
+
+    </div>
+</section>

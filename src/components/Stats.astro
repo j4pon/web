@@ -1,0 +1,49 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type Item = {
+    cantidad:string,
+    descripcion:string,
+    posicion:string
+}
+const obj:any = t('stats.items')
+const items: Item[] = JSON.parse(JSON.stringify(obj));
+const statItems:Item[] = items;
+---
+<section id="stats" class="py-20 lg:pt-32">
+
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl lg:text-5xl font-extrabold">
+            {t('stats.title')}
+        </h2>
+        <div class="grid grid-cols-3 mt-20 lg:px-24 gap-4">
+            {statItems.map(({cantidad, descripcion, posicion}) => (
+
+            <div class={ `w-full ${posicion}` }>
+                <p class="text-4xl lg:text-6xl ffont-extralight  text-teal-500 text-center">
+                    {cantidad}
+                </p>
+                <p class="font-extralight mb-6" >
+                    <Fragment set:html={descripcion} />
+                </p>
+            </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<script>
+    function initializeEffect(){
+
+        console.log('aaaaa')
+    }
+    function afterEffect(){
+        console.log('b')
+    }
+    // Run the function after the page is fully loaded
+    document.addEventListener('astro:page-load', initializeEffect);
+    document.addEventListener('astro:after-swap', afterEffect);
+</script>

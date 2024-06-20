@@ -1,0 +1,40 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Hexagon from "./Hexagon.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+---
+
+<section id="home" class="pt-10 md:pt-20 pb-20 bg-[#4075b1]">
+  <div class="container mx-auto px-8 lg:flex">
+      <div class="text-center lg:text-left lg:w-1/2 content-center">
+          <h1
+              class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl text-white
+              animate-fade-up animate-once animate-ease-in-out">
+              <Fragment set:html={t('banner.title')} />
+          </h1>
+          <p class=" pl-[80px] max-w-2xl mb-6 font-light text-white lg:mb-8 md:text-lg lg:text-xl">
+            <Fragment set:html={t('banner.subtitle')} />
+        </p>
+      </div>
+
+      <div class="lg:w-1/2">
+          <div class="flex flex-col">
+              <Hexagon title='SAR & TAE'>
+                {t('banner.sar')} 
+              </Hexagon>
+              <Hexagon title="EFT">
+                {t('banner.eft')}
+            </Hexagon>
+              <Hexagon title="SOF">
+                {t('banner.sof')} 
+              </Hexagon>
+              <Hexagon title="BANTIQ">
+                {t('banner.bantiq')} 
+              </Hexagon>
+          </div>
+      </div>
+  </div>
+</section>

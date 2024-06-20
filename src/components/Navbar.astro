@@ -1,0 +1,56 @@
+---
+import LanguagePicker from './LanguagePicker.astro'
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRelativeLocaleUrl} from 'astro:i18n'
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+---
+
+<header class="sticky top-0 bg-white shadow z-[999]">
+    <div class="container flex flex-col sm:flex-row justify-between items-center mx-auto py-4 px-8">
+        <div class="flex items-center text-2xl">
+            <div class=" w-44 mr-3">
+
+                <a href={ getRelativeLocaleUrl(lang, '')} >
+                    <img src="https://aditiva.com/wp-content/uploads/2019/09/cropped-logo_aditiva_white_L-1980x495.jpg" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="flex mt-4 sm:mt-0">
+            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(lang, 'demo')} aria-current="page" data-astro-reload>{t('nav.demo')}</a>
+            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(lang, 'carrera')} aria-current="page" data-astro-reload>{t('nav.carrera')}</a>
+            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(lang, 'contacto')} aria-current="page" data-astro-reload>{t('nav.contacto')}</a>
+        </div>
+        
+        <div class=" ">
+          <LanguagePicker />
+        </div>
+    </div>
+</header>
+
+<script>
+    // Obtener el pathname actual
+    const currentPath = window.location.pathname;
+  
+    // Función para añadir clase 'active' al enlace correspondiente
+    function setActiveLink() {
+      // Obtener todos los enlaces del menú
+      const links = document.querySelectorAll('.flex a');
+  
+      // Iterar sobre cada enlace
+      links.forEach((link) => {
+        // Comparar el href del enlace con el pathname actual
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('text-[#4075b1]'); // Aplicar clase activa
+        } else {
+          link.classList.remove('text-[#4075b1]'); // Quitar clase activa si no es el enlace actual
+        }
+      });
+    }
+  
+    // Llamar a la función para establecer el enlace activo inicialmente
+    setActiveLink();
+
+  </script>
