@@ -33,3 +33,20 @@ export function useTranslatedPath(lang: keyof typeof ui) {
     return !showDefaultLang && l === defaultLang ? `/web${path}` : `/web/${l}${path}`
   }
 }
+
+export function normalizeUrl(url: string): string {
+  return url.replace(/([^:]\/)\/+/g, "$1");
+}
+
+export function getBasePath(site: string, url: URL): string {
+  const pathSegments = url.pathname.split('/');
+  // Elimina segmentos vacíos causados por barras adicionales
+  const filteredSegments = pathSegments.filter(segment => segment !== '');
+  
+  // Si la URL tiene una estructura `web/en` o `/en`
+  if (filteredSegments.length === 2 || (filteredSegments.length === 1 && filteredSegments[0] !== 'web')) {
+    return `${site}/${filteredSegments.join('/')}`;
+  }
+  
+  return site;
+}

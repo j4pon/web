@@ -1,5 +1,6 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getRelativeLocaleUrl} from 'astro:i18n'
+import { getLangFromUrl, normalizeUrl, useTranslations } from "../i18n/utils";
 import Layout from "../layouts/Layout.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -17,14 +18,17 @@ type Item = {
 const obj:any = t('carreara.vacante.items')
 const items: Item[] = JSON.parse(JSON.stringify(obj));
 const opcionesItems:Item[] = items;
+
+const basePath = Astro.site + Astro.url.pathname.split('/').slice(0, 2).join('/');
+const imagePath = normalizeUrl(`${basePath}/img6.jpg`);
 ---
 
 <Layout title="Carreras">
 
     <section id="home" class="bg-[#4075b1]">
-      <a href="carrera/#vacantes">
+      <a href={`${getRelativeLocaleUrl(lang, 'carrera')}#vacantes`}>
         <div class="relative h-screen w-full">
-            <img src="/web/img6.jpg" alt="Background Image" class="object-cover object-center w-full h-full items-center" />
+            <img src={imagePath} alt="Background Image" class="object-cover object-center w-full h-full items-center" />
             <img src="" alt="Background Image" class="absolute inset-0 w-full h-full object-cover filter blur-sm">
             <div class="absolute inset-0 bg-black bg-opacity-50"></div>
             <div class="absolute top-20 inset-0 flex flex-col items-center">
@@ -49,7 +53,7 @@ const opcionesItems:Item[] = items;
 
               <div class="grid grid-cols-1 gap-4 pt-10">
                 {opcionesItems.map(({title, hash, opciones}) => (
-                  <a href={`carrera/#${hash}`}
+                  <a href={`${getRelativeLocaleUrl(lang, 'carrera')}#${hash}`}
                     class="relative flex h-full flex-col rounded-md border border-gray-200 bg-white p-2.5 hover:border-gray-300 sm:rounded-lg sm:p-5
                     shadow shadow-gray">
                     <span class="text-md mb-0 font-semibold text-gray-900 hover:text-black sm:mb-1.5 sm:text-xl ">

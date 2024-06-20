@@ -1,8 +1,14 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, normalizeUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const basePath = Astro.site + Astro.url.pathname.split('/').slice(0, 2).join('/');
+
+const urlImg = (img:string)=> {
+    return normalizeUrl(`${basePath}/${img}`);
+}
 ---
 
 <section id="solution" class="py-20 lg:pt-32 bg-gray-100">
@@ -15,19 +21,19 @@ const t = useTranslations(lang);
         <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 mt-8 lg:px-24 gap-5">
 
             <div class=" bg-white rounded-lg shadow-lg p-10">
-                <img src="img1.svg" alt="" class="w-full object-cover">
+                <img src={urlImg('img1.svg')} alt="" class="w-full object-cover">
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-10">
-                <img src="img2.svg" alt="" class="w-full object-cover">
+                <img src={urlImg('img2.svg')}  alt="" class="w-full object-cover">
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-10">
-                <img src="img3.svg" alt="" class="w-fullobject-cover">
+                <img src={urlImg('img3.svg')}  alt="" class="w-fullobject-cover">
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-10">
-                <img src="img4.svg" alt="" class="w-full object-cover">
+                <img src={urlImg('img4.svg')}  alt="" class="w-full object-cover">
             </div>
             
         </div>
