@@ -19,9 +19,9 @@ const t = useTranslations(lang);
             </div>
         </div>
         <div class="flex mt-4 sm:mt-0">
-            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(`/web/${lang}`, 'demo')} aria-current="page" data-astro-reload>{t('nav.demo')}</a>
-            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(`/web/${lang}`, 'carrera')} aria-current="page" data-astro-reload>{t('nav.carrera')}</a>
-            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(`/web/${lang}`, 'contacto')} aria-current="page" data-astro-reload>{t('nav.contacto')}</a>
+            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(`${lang}`, 'demo')} aria-current="page" data-astro-reload>{t('nav.demo')}</a>
+            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(`${lang}`, 'carrera')} aria-current="page" data-astro-reload>{t('nav.carrera')}</a>
+            <a class="px-4 hover:text-[#4075b1]" href={ getRelativeLocaleUrl(`${lang}`, 'contacto')} aria-current="page" data-astro-reload>{t('nav.contacto')}</a>
         </div>
         
         <div class=" ">
