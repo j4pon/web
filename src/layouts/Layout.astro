@@ -23,6 +23,7 @@ const lang = getLangFromUrl(Astro.url);
 		<title>{title}</title>
 		<ViewTransitions />
 		<script>document.documentElement.classList.add('js')</script>
+		<base href="/web">
 	</head>
 	<body>
 		<Navbar transition:animate="slide"/>
