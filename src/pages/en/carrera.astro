@@ -22,9 +22,9 @@ const opcionesItems:Item[] = items;
 <Layout title="Carreras">
 
   <section id="home" class="bg-[#4075b1]">
-    <a href="/web/carrera#vacantes">
+    <a href="/carrera#vacantes">
       <div class="relative h-screen w-full">
-          <img src="/web/img6.jpg" alt="Background Image" class="object-cover object-center w-full h-full items-center" />
+          <img src="/img6.jpg" alt="Background Image" class="object-cover object-center w-full h-full items-center" />
           <img src="" alt="Background Image" class="absolute inset-0 w-full h-full object-cover filter blur-sm">
           <div class="absolute inset-0 bg-black bg-opacity-50"></div>
           <div class="absolute top-20 inset-0 flex flex-col items-center">
@@ -49,7 +49,7 @@ const opcionesItems:Item[] = items;
 
             <div class="grid grid-cols-1 gap-4 pt-10">
               {opcionesItems.map(({title, hash, opciones}) => (
-                <a href={`/web/carrera#${hash}`}
+                <a href={`/carrera#${hash}`}
                   class="relative flex h-full flex-col rounded-md border border-gray-200 bg-white p-2.5 hover:border-gray-300 sm:rounded-lg sm:p-5
                   shadow shadow-gray">
                   <span class="text-md mb-0 font-semibold text-gray-900 hover:text-black sm:mb-1.5 sm:text-xl ">
